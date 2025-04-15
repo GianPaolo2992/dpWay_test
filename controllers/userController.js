@@ -18,6 +18,14 @@ class UserController {
       res.status(500).json({ error: 'Errore nel recupero utenti', error: err.message });
     }
   }
+  async getAllUsersWithRole(req, res) {
+    try {
+      const users = await userService.getUsersWithRole();
+      res.status(200).json({ users: users });
+    } catch (err) {
+      res.status(500).json({ error: 'Errore nel recupero utenti', error: err.message });
+    }
+  }
 
   async getUserById(req, res) {
     const { id } = req.params;
@@ -41,7 +49,38 @@ class UserController {
     if (updated) res.json(updated);
     else res.status(404).json({ message: 'Utente non trovato' });
   }
-
+  async updateUsername(req, res) {
+    try {
+      const { id } = req.params;
+      const { username } = req.body;
+      const result = await userService.updateUsername(id, username);
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  }
+  
+  async updateEmail(req, res) {
+    try {
+      const { id } = req.params;
+      const { email } = req.body;
+      const result = await userService.updateEmail(id, email);
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  }
+  
+  async updatePassword(req, res) {
+    try {
+      const { id } = req.params;
+      const { password } = req.body;
+      const result = await userService.updatePassword(id, password);
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  }
   async deleteUser(req, res) {
     const { id } = req.params;
     const deleted = await userService.deleteUser(id);

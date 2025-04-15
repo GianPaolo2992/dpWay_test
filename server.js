@@ -4,13 +4,16 @@ const DbConnection = require('./config/db');
 // Usa le rotte definite nel file userRoutes
 const userRoutes = require('./routes/userRoutes'); // Importa le rotte degli utenti
 
+// Importa le associazioni
+require('./models/associations'); // Importa e configura le associazioni
+
 const app = express();
 
 app.use(express.json());
 
 app.use(cors());
 
-app.use('/users', userRoutes);
+app.use('/api', userRoutes);
 
 const PORT = process.env.PORT || 3001;
 

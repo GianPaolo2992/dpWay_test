@@ -17,7 +17,7 @@ class DbConnection {
         host: process.env.DB_HOST,
         dialect: "postgres",
         port: process.env.DB_PORT,
-        logging: console.log, // imposta a true se vuoi vedere le query in console
+        logging: false, // Disabilita il logging
       }
     );
    
@@ -27,7 +27,7 @@ class DbConnection {
   async getConnection() {
     try {
       await this.sequelize.authenticate();
-      await this.sequelize.sync();
+      await this.sequelize.sync({ alter: true });
      
       console.log('Database connected successfully!');
 

@@ -1,5 +1,5 @@
-// models/index.js
-const { Sequelize, DataTypes } = require('sequelize');
+{/*// models/index.js
+const { DataTypes } = require('sequelize');
 const DbConnection = require('../config/db');
 const sequelize = new DbConnection().getConnection();
 
@@ -25,3 +25,4 @@ module.exports = {
   UserPassword,
   UserRole,
 };
+*/}
